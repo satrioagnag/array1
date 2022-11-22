@@ -1,0 +1,160 @@
+package com.program;
+import static java.lang.Math.abs;
+import java.util.Scanner;
+
+public class coba {
+
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        boolean loop = true;
+        while (loop) 
+            System.out.print("Jumlah bulan/Periode : ");
+            int p = input.nextInt();
+
+            //Deklarasi array
+            float data[] = new float[p];
+            //input data ke array
+            for (int i = 0; i < data.length; i++) {
+                System.out.print("Data penjualan bulan ke " + (i + 1) + " : ");
+                data[i] = input.nextFloat();
+            }
+            System.out.println("================================================================"
+                    + "");
+            //menampilkan data array
+            System.out.println("Hasil rekapan data penjualanan : ");
+            for (int i = 0; i < data.length; i++) {
+                System.out.println("Data penjualan bulan ke-" + (i + 1) + " : " + Math.round(data[i]));
+            }
+            //peramalan 2 bulan
+            System.out.println("================================================================");
+            System.out.println("Hasil peramalan orde 2 bulan : ");
+            for (int i = 0; i < data.length; i++) {
+                if (i >= 2) {
+                    float dr2 = (data[i - 2] + data[i - 1]) / 2;
+                    float rd2 = (data[i] - dr2) * 100 / data[i];
+                    System.out.println("Data bulan ke-" + (i + 1) + "|" + "Unit terjual : " + Math.round (data[i]) + "|" + "Data peramalan : " + Math.round(dr2) + "|" + "Relative deviation : " + Math.abs(rd2) + "%");
+                
+                }
+            }
+            for (int i = 0; i < data.length + 1; i++) {
+                if (i >= (data.length)) {
+                    float dra2 = (data[i - 2] + data[i - 1]) / 2;
+                    System.out.println("Data bulan ke-" + (data.length + 1) + "|" + "Data peramalan :" + Math.round(dra2));
+                }
+            }
+            //peramalan 3 bulan
+            if (p >= 3) {
+                System.out.println("================================================================");
+                System.out.println("Hasil peramalan orde 3 bulan : ");
+                for (int i = 0; i < data.length; i++) {
+                    if (i >= 3) {
+                        float dr3 = (data[i - 3] + data[i - 1] + data[i - 2]) / 3;
+                        float rd3 = (data[i] - dr3) * 100 / data[i];
+                        System.out.println("Data bulan ke-" + (i + 1) + "|" + "Unit terjual : " + Math.round(data[i]) + "|" + "Data peramalan : " + Math.round(dr3) + "|" + "Relative deviation : " + Math.abs(rd3) + "%");
+                    }
+                }
+                for (int i = 0; i < data.length + 1; i++) {
+                    if (i >= (data.length)) {
+                        float dra3 = (data[i - 3] + data[i - 2] + data[i - 1]) / 3;
+                        System.out.println("Data bulan ke-" + (data.length + 1) + "|" + "Data peramalan :" + Math.round(dra3));
+                    }
+                }
+            }
+            //peramalan 4 bulan
+            if (p >= 4) {
+                System.out.println("================================================================");
+                System.out.println("Hasil peramalan orde 4 bulan : ");
+                for (int i = 0; i < data.length; i++) {
+                    if (i >= 4) {
+                        float dr4 = (data[i - 4] + data[i - 1] + data[i - 2] + data[i - 3]) / 4;
+                        float rd4 = (data[i] - dr4) * 100 / data[i];
+                        System.out.println("Data bulan ke-" + (i + 1) + "|" + "Unit terjual : " + Math.round(data[i]) + "|" + "Data peramalan : " + Math.round(dr4) + "|" + "Relative deviation : " + Math.abs(rd4) + "%");
+                    }
+                }
+                for (int i = 0; i < data.length + 1; i++) {
+                    if (i >= (data.length)) {
+                        float dra4 = (data[i - 4] + data[i - 1] + data[i - 2] + data[i - 3]) / 4;
+                        System.out.println("Data bulan ke-" + (data.length + 1) + "|" + "Data peramalan :" + Math.round(dra4));
+                    }
+                }
+            }
+            //perbandingan rd bulan terakhir
+            System.out.println("================================================================");
+            System.out.println("Perbandingan hasil relative deviation bulan ke-" + (data.length + 1) + " : ");
+            float total2=0, total3=0, total4 = 0;
+            float datard2 [] = new float [p];
+            for (int i = 0; i < data.length; i++) {
+                if (i >= 2) {
+                    float dr2 = (data[i - 2] + data[i - 1]) / 2;
+                    float rd2 = (data[i] - dr2) * 100 / data[i];
+                   datard2 [i] =  Math.abs(rd2);
+                }} for (int i = 0; i < datard2.length; i++){
+                        total2 = total2 + Math.abs(datard2[i]);}
+                float rata2 = total2 / (p-2);
+             System.out.println ("Relative deviation orde 2 bulan : " + rata2 + "%");
+            float datard3 [] = new float [p];
+            for (int i = 0; i < data.length; i++) {
+                if (i >= 3) {
+                    float dr3 = (data[i - 3] + data[i - 1] + data[i - 2]) / 3;
+                    float rd3 = (data[i] - dr3) * 100 / data[i];
+                    datard3 [i] =  Math.abs(rd3);
+                }} for (int i = 0; i < datard3.length; i++){
+                        total3 = total3 + Math.abs(datard3[i]);}
+                float rata3 = total3 / (p-3);
+            System.out.println("Relative deviation orde 3 bulan : " + rata3 + "%");
+            float datard4 [] = new float [p];
+            for (int i = 0; i < data.length; i++) {
+                if (i >= 4) {
+                    float dr4 = (data[i - 4] + data[i - 1] + data[i - 2] + data[i - 3]) / 4;
+                    float rd4 = (data[i] - dr4) * 100 / data[i];
+                    datard4 [i] =  Math.abs(rd4);
+                }} for (int i = 0; i < datard4.length; i++){
+                        total4 = total4 + Math.abs(datard4[i]);}
+                float rata4 = total4 / (p-4);
+            System.out.println("Relative deviation orde 4 bulan : " +rata4+"%");
+             
+            //kesimpulan
+            if (rata2 < rata3 && rata2 < rata4){
+             for (int i = 0; i < data.length + 1; i++) {
+                if (i >= (data.length)) {
+                    float dra2 = (data[i - 2] + data[i - 1]) / 2;
+             System.out.println ("Karena nilai Relative Deviation yang terkecil adalah yang orde 2 bulan, yaitu "+rata2+ "%."+ ""
+                     + ""+ " Maka, yang dipilih adalah data peramalan dengan orde 2 bulan. Demikian, bulan ke-" +(data.length+1)+ " jumlah unit yang terjual diperkirakan sejumlah " +Math.round(dra2) + " unit.");
+                }}} 
+            if (rata3 < rata2 && rata3 < rata4){
+                 for (int i = 0; i < data.length + 1; i++) {
+                    if (i >= (data.length)) {
+                        float dra3 = (data[i - 3] + data[i - 2] + data[i - 1]) / 3;
+             System.out.println ("Karena nilai Relative Deviation yang terkecil adalah yang orde 2 bulan, yaitu "+rata3+ "%." + ""
+                     + ""+" Maka, yang dipilih adalah data peramalan dengan orde 2 bulan. Demikian, bulan ke-" +(data.length+1)+ " jumlah unit yang terjual diperkirakan sejumlah " + Math.round(dra3) + " unit.");
+                }}}        
+            if (rata4<rata2 && rata4<rata3){
+                for (int i = 0; i < data.length + 1; i++) {
+                    if (i >= (data.length)) {float dra4 = (data[i - 4] + data[i - 1] + data[i - 2] + data[i - 3]) / 4;
+                     System.out.println ("Karena nilai Relative Deviation yang terkecil adalah yang orde 2 bulan, yaitu "+rata4+"%."+ ""
+                             + ""
+                     + " Maka, yang dipilih adalah data peramalan dengan orde 2 bulan. Demikian, bulan ke-" +(data.length+1)+ " jumlah unit yang terjual diperkirakan sejumlah " + Math.round(dra4) + " unit.");
+                }}} 
+                          
+        
+            //pengulangan
+            System.out.println("================================================================");
+            System.out.println("Apakah anda ingin mengulang program?");
+            System.out.println("1. Tidak ");
+            System.out.println("2. Ya.");
+            System.out.print("=");
+            int mengakhiri = input.nextInt();
+            if (mengakhiri == 1) {
+                System.out.println("Anda memilih untuk mengakhiri pencarian data");
+                System.out.println("Terimakasih!");
+                loop = false;
+            }
+        }
+    }}
+
+// Kelas Paralel C
+// 22082010090 - Nayli Amirah Firdaus
+// 22082010095 - Safna Faradillah
+// 22082010116 - Rafi Argya Darma Herdiyanto
+// 22082010125 - Veda Ardelia

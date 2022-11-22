@@ -1,0 +1,77 @@
+// array
+// perulangan
+// percabangan
+import java.util.Scanner;
+
+public class Chou {
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.print("Masukkan Jumlah bulan/periode: ");
+        int jumlahBulan = scan.nextInt();
+
+        int months[] = new int[jumlahBulan];
+        String[] alpha = {
+                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u",
+                "v", "w", "x", "y", "z"
+        };
+        for (int i = 0; i < months.length; i++) {
+            System.out.print(
+                    (i > 25 ? alpha[(i / 25) - 1] + alpha[(i % 25) - 1]
+                            : alpha[i]) + ". Data penjualan bulan ke-" + (i + 1) + ": ");
+            months[i] = scan.nextInt();
+        }
+        // System.out.println(Arrays.toString(months));
+        System.out.println("Data yang telah anda inputkan adalah: ");
+        for (int i = 0; i < months.length; i++) {
+            System.out.println(
+                    (i > 25 ? alpha[(i / 25) - 1] + alpha[(i % 25) - 1]
+                            : alpha[i]) + ". Data penjualan bulan ke-" + (i + 1) + ": " + months[i]);
+        }
+        // peramalan 2 bulan
+        // int periodeDuaBulan[] = new int[jumlahBulan + 1];
+        // for (int i = 0; i < periodeDuaBulan.length; i++) {
+        // if (i >= 2) {
+        // System.out.println((i > 25 ? alpha[(i / 25) - 1] + alpha[(i % 25) - 1]
+        // : alpha[i]) + ". Data penjualan bulan ke-" + (i + 1) + ": " + months[i]);
+        // periodeDuaBulan[i] = (months[i - 2] + months[i - 1]) / 2;
+        // }
+        // }
+        int periodeDuaBulan[] = new int[jumlahBulan + 1];
+        for (int i = 0; i < periodeDuaBulan.length; i++) {
+            if (i >= 2) {
+                periodeDuaBulan[i] = (months[i - 2] + months[i - 1]) / 2;
+            }
+
+        }
+        // peramalan 3 bulan
+        int periodeTigaBulan[] = new int[jumlahBulan + 1];
+        for (int i = 0; i < periodeTigaBulan.length; i++) {
+            if (i >= 3) {
+                periodeTigaBulan[i] = (months[i - 3] + months[i - 2] +
+                        months[i - 1]) / 3;
+            }
+        }
+        // peramalan 4 bulan
+        int periodeEmpatBulan[] = new int[jumlahBulan + 1];
+        for (int i = 0; i < periodeEmpatBulan.length; i++) {
+            if (i >= 4) {
+                periodeEmpatBulan[i] = (months[i - 4] + months[i - 3] +
+                        months[i - 2]
+                        + months[i - 1])
+                        / 4;
+            }
+        }
+
+        System.out.println("Bulan\t\tUnit Jual\t2 Bulan\t\t3 Bulan\t\t4 Bulan");
+        for (int i = 0; i < months.length; i++) {
+            System.out.println((i + 1) + "\t\t" + months[i] + "\t\t" + periodeDuaBulan[i]
+                    +
+                    "\t\t" + periodeTigaBulan[i]
+                    + "\t\t" + periodeEmpatBulan[i]);
+        }
+        System.out.println((months.length + 1) + "\t\t" + "" + "\t\t" +
+                periodeDuaBulan[periodeDuaBulan.length - 1]
+                + "\t\t" + periodeTigaBulan[periodeTigaBulan.length - 1]
+                + "\t\t" + periodeEmpatBulan[periodeEmpatBulan.length - 1]);
+    }
+}
